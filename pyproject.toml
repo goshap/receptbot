@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "mybot"
+version = "0.1.0"
+description = ""
+authors = ["Gosha Frolow <prokurenoo@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiogram = "^3.3.0"
+pydantic = "^2.14.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
