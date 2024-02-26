@@ -2,15 +2,13 @@ import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
-from aiogram.fsm.storage.memory import MemoryStorage
-from Config_reader import config
 from aiogram import F
-from aiogram.types import Message
 from aiogram.enums import ParseMode
+from Config_reader import config
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=config.bot_token.get_secret_value())
-dp = Dispatcher()  # все данные бота, которые мы не сохраняем в БД, будут стёрты при перезапуске
+dp = Dispatcher()
 
 # Словарь для хранения идентификаторов последних отправленных сообщений ботом по чатам
 previous_messages = {}
@@ -22,6 +20,10 @@ async def delete_previous_bot_message(chat_id):
             await bot.delete_message(chat_id=chat_id, message_id=previous_messages[chat_id]['bot'])
         except Exception as e:
             logging.error(f"Ошибка при удалении предыдущего сообщения бота: {e}")
+
+async def on_startup(dp):
+    logging.warning('Bot has been started, press Ctrl+C to stop')
+    print("Bot has been started")
 
 # Обработчик команды /start
 @dp.message(Command('start'))
@@ -84,3 +86,4 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
+
