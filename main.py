@@ -4,10 +4,10 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 from aiogram import F
 from aiogram.enums import ParseMode
-from Config_reader import config
 
+BOT_TOKEN = '6969343979:AAHWyix4smbWl_kwje_m7PE_3k-tmtdBvPc'
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token=config.bot_token.get_secret_value())
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 # Словарь для хранения идентификаторов последних отправленных сообщений ботом по чатам
